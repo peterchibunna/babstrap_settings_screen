@@ -3,7 +3,7 @@ import 'package:babstrap_settings_screen/src/settings_screen_utils.dart';
 import 'package:flutter/material.dart';
 
 class SettingsItem extends StatelessWidget {
-  final IconData icons;
+  final dynamic icons;
   final IconStyle? iconStyle;
   final String title;
   final TextStyle? titleStyle;
@@ -15,18 +15,19 @@ class SettingsItem extends StatelessWidget {
   final int? subtitleMaxLine;
   final TextOverflow? overflow;
 
-  SettingsItem(
-      {required this.icons,
-      this.iconStyle,
-      required this.title,
-      this.titleStyle,
-      this.subtitle,
-      this.subtitleStyle,
-      this.trailing,
-      this.onTap,
-      this.titleMaxLine,
-      this.subtitleMaxLine,
-      this.overflow = TextOverflow.ellipsis});
+  SettingsItem({
+    required this.icons,
+    this.iconStyle,
+    required this.title,
+    this.titleStyle,
+    this.subtitle,
+    this.subtitleStyle,
+    this.trailing,
+    this.onTap,
+    this.titleMaxLine,
+    this.subtitleMaxLine,
+    this.overflow = TextOverflow.ellipsis
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,18 +42,18 @@ class SettingsItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(iconStyle!.borderRadius!),
                 ),
                 padding: EdgeInsets.all(5),
-                child: Icon(
+                child: icons.runtimeType == IconData ? Icon(
                   icons,
                   size: SettingsScreenUtils.settingsGroupIconSize,
                   color: iconStyle!.iconsColor,
-                ),
+                ) : icons,
               )
             : Padding(
                 padding: EdgeInsets.all(5),
-                child: Icon(
+                child: icons.runtimeType == IconData ? Icon(
                   icons,
                   size: SettingsScreenUtils.settingsGroupIconSize,
-                ),
+                ): icons,
               ),
         title: Text(
           title,
